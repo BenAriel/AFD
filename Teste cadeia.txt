@@ -1,0 +1,24 @@
+ quantiade de estados = 3
+A[0]
+B[1]
+C[2]
+alfabeto
+a[0]
+b[1]
+transições
+A[0][0]
+B[0][1]
+C[1][0]
+A[1][1]
+A[2][0]
+B[2][1]
+
+
+Teste da cadeia : ababa
+iteração 1: A
+iteração 2: B
+iteração 3: C
+iteração 4: B
+iteração 5: C
+
+ACEITA
