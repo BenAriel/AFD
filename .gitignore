@@ -1,0 +1,17 @@
+# Ignore arquivos de configuração do Visual Studio Code
+.vscode/
+
+# Ignore arquivos de configuração do Eclipse
+.settings/
+bin/
+*.class
+
+# Ignore arquivos de configuração do IntelliJ IDEA
+.idea/
+
+# Ignore arquivos JAR no diretório de bibliotecas
+lib/*.jar
+
+# Adicione qualquer outra IDE que você deseja ignorar abaixo desta linha
+# Exemplo:
+# /path/para/a/ide/
