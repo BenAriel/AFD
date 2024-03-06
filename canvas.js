@@ -2,6 +2,38 @@ window.onload = function(){
     montarFigura();
 };
 
+document.addEventListener("DOMContentLoaded", function() {
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var numEstadosInput = document.getElementById("numEstados");
+    var transicoesInput = document.getElementById("transicoesInput");
+    var desenharBtn = document.getElementById("desenharBtn");
+    
+    numEstadosInput.addEventListener("change", function() {
+        var numEstados = parseInt(numEstadosInput.value);
+        if (numEstados < 2) {
+            alert("Número de estados deve ser pelo menos 2.");
+            return;
+        }
+        transicoesInput.innerHTML = "";
+        for (var i = 0; i < numEstados; i++) {
+            for (var j = 0; j < numEstados; j++) {
+                if (i !== j) {
+                    var label = document.createElement("label");
+                    label.textContent = " Transição de Q" + i + " para Q" + j + ": ";
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.size = 3;
+                    input.maxLength = 1;
+                    transicoesInput.appendChild(label);
+                    transicoesInput.appendChild(input);
+                    transicoesInput.appendChild(document.createElement("br")); //quebra a linha sempre que fizer um
+                }
+            }
+        }
+    });
+});
+
 function montarFigura() {
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext('2d');
@@ -46,6 +78,8 @@ function montarFigura() {
 
         desenharSeta(ctx, bolinhaX + raio, bolinhaY + raio, proximoX + raio, proximoY + raio, coresSetas[i]); //Q0 para Q1
         desenharSeta(ctx, bolinhaX + raio, bolinhaY + raio, proximoX2 + raio, proximoY2 + raio, coresSetas[i]); //Q0 para Q2
+        desenharSeta(ctx, proximoX2 + raio, proximoY2 + raio, bolinhaX + raio, bolinhaY + raio, coresSetas[2]); //Q2 para Q2
+
         //desenharSeta(ctx, bolinhaX2 + raio, bolinhaY2 + raio, proximoX + raio, proximoY + raio, coresSetas[i]);
     }
 }
