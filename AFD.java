@@ -31,10 +31,30 @@ public class AFD {
                 alfabeto[j] = letra;
             }
         }
-
+        System.out.println("digite o estado inial:");
+        String estadoinicial = scanner.next(); //estado incial
+        for(int i = 0; i<estados.length;i++)
+        {
+            if(estadoinicial.equals(estados[i]))
+            {
+                break;
+            }
+            else if(i==estados.length-1)
+            {
+                System.out.println("estado inicial não encontrado");
+                return;
+            }
+        }
         // Solicita e lê o estado final
-        System.out.print("Informe o estado final: ");
-        String estadoFinal = scanner.next();
+        System.out.print("Informe o(s) estado(s) final(is): ");
+        List<String> estadoFinal  = new ArrayList<>();
+        String finais = scanner.next();
+        while(!finais.equals("s"))
+        {
+            estadoFinal.add(finais);
+            finais = scanner.next();
+        }
+        
 
         // Inicializa a matriz de transição
         String[][] matrizTransicao = new String[numEstados][alfabeto.length];
@@ -48,8 +68,7 @@ public class AFD {
         String resposta = "";
         do {
             List<String> sequenciaEstados = new ArrayList<>();
-            String estadoAtual = estados[0]; //estado incial
-
+            String estadoAtual = estadoinicial;
             // Solicita e lê a sequência de chaves
             System.out.print("Informe a string da cadeia : ");
             String stringCadeia = scanner.next();
@@ -58,14 +77,23 @@ public class AFD {
             for (char caractere : stringCadeia.toCharArray()) {
                 estadoAtual = transitarEstado(estadoAtual, caractere, estados, alfabeto, matrizTransicao);
                 sequenciaEstados.add(estadoAtual);
+                if(estadoAtual.equals("morto"))
+                {
+                    System.out.println("caiu em estado morto");
+                    break;
+                }
+            }
+            String resultado = "não aceita";
+            for(int i =0; i<estadoFinal.size();i++)
+            {
+                String verificar = estadoFinal.get(i);
+                if (estadoAtual.equals(verificar)) {
+                    resultado="aceita";
+                    break;
+               } 
             }
 
-            // Verifica se o último estado é igual ao estado final
-            if (estadoAtual.equals(estadoFinal)) {
-                System.out.println("Sim");
-            } else {
-                System.out.println("Não");
-            }
+            System.out.println(resultado);
 
             System.out.println("Deseja continuar? (s/qualquer coisa)");
             resposta = scanner.next();
