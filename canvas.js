@@ -76,15 +76,15 @@ function montarFigura() {
 
         const {x: proximoX2, y: proximoY2} = posicoes[2];
 
-        desenharSeta(ctx, bolinhaX + raio, bolinhaY + raio, proximoX + raio, proximoY + raio, coresSetas[i]); //Q0 para Q1
-        desenharSeta(ctx, bolinhaX + raio, bolinhaY + raio, proximoX2 + raio, proximoY2 + raio, coresSetas[i]); //Q0 para Q2
-        desenharSeta(ctx, proximoX2 + raio, proximoY2 + raio, bolinhaX + raio, bolinhaY + raio, coresSetas[2]); //Q2 para Q2
+        desenharSeta(ctx, bolinhaX + raio, bolinhaY + raio, proximoX + raio, proximoY + raio, coresSetas[i], 'a'); //Q0 para Q1
+        desenharSeta(ctx, bolinhaX + raio, bolinhaY + raio, proximoX2 + raio, proximoY2 + raio, coresSetas[i], 'b'); //Q0 para Q2
+        desenharSeta(ctx, proximoX2 + raio, proximoY2 + raio, bolinhaX + raio, bolinhaY + raio, coresSetas[2], 'c'); //Q2 para Q2
 
         //desenharSeta(ctx, bolinhaX2 + raio, bolinhaY2 + raio, proximoX + raio, proximoY + raio, coresSetas[i]);
     }
 }
 
-function desenharSeta(ctx, x1, y1, x2, y2, cor) {
+function desenharSeta(ctx, x1, y1, x2, y2, cor, letra) {
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
@@ -98,6 +98,15 @@ function desenharSeta(ctx, x1, y1, x2, y2, cor) {
     ctx.strokeStyle = cor; 
     ctx.lineWidth = 5; 
     ctx.stroke();
+
+    const textoX = (x1 + x2) / 2;
+    const textoY = (y1 + y2) / 2;
+
+    ctx.font = '30px Arial';
+    ctx.fillStyle = cor;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(letra, textoX + 15, textoY + 15);
     ctx.closePath();
 }
 
