@@ -6,9 +6,18 @@
     <title>Document</title>
     <script type="text/javascript" src="canvas.js"></script>
     <link rel="stylesheet" href="canvas.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <div>
+            <label for="numEstados">Número de Estados:</label>
+            <input type="number" id="numEstados" name="numEstados" min="2" max="10">
+        </div>
+        <div id="transicoesInput"></div>
+        <button id="desenharBtn">Desenhar Transições</button>
+    </div>
+
     <canvas width="1400" height="800" id="canvas"></canvas>
 
 </body>
